@@ -1,5 +1,5 @@
 <!-- FORM -->
-<div [formGroup]="payment">
+<div>
   <div class="row">
     <div class="col-md-12 col-lg-9">
       <div class="form-group">
@@ -10,12 +10,8 @@
                 'paymentForm.paymentType' | cxTranslate
               }}</span>
               <ng-select
-                [searchable]="false"
-                [clearable]="false"
-                [items]="cardTypes"
                 bindLabel="name"
                 bindValue="code"
-                placeholder="{{ 'paymentForm.selectOne' | cxTranslate }}"
                 (change)="paymentSelected($event)"
               >
               </ng-select>
@@ -32,9 +28,6 @@
             class="form-control"
             type="text"
             required
-            placeholder="{{
-              'paymentForm.accountHolderName.placeholder' | cxTranslate
-            }}"
             formControlName="accountHolderName"
           />
         </label>
@@ -62,24 +55,16 @@
             <div class="cx-payment-form-exp-date row">
               <div class="col-sm-6 col-md-5">
                 <ng-select
-                  [searchable]="false"
-                  [clearable]="false"
-                  [items]="months"
                   bindLabel="name"
                   bindValue="expiryMonth"
-                  placeholder="{{ 'paymentForm.monthMask' | cxTranslate }}"
                   (change)="monthSelected($event)"
                 >
                 </ng-select>
               </div>
               <div class="col-sm-6 col-md-7">
                 <ng-select
-                  [searchable]="false"
-                  [clearable]="false"
-                  [items]="years"
                   bindLabel="name"
                   bindValue="expiryYear"
-                  placeholder="{{ 'paymentForm.yearMask' | cxTranslate }}"
                   (change)="yearSelected($event)"
                 >
                 </ng-select>
@@ -92,7 +77,6 @@
             <span class="label-content">
               {{ 'paymentForm.securityCode' | cxTranslate }}
               <cx-icon
-                [type]="iconTypes.INFO"
                 class="cx-payment-form-tooltip"
                 placement="right"
                 ngbTooltip="Card Verification Value"
@@ -139,7 +123,6 @@
                 <input
                   type="checkbox"
                   class="form-check-input"
-                  [checked]="sameAsShippingAddress"
                   (change)="toggleSameAsShippingAddress()"
                 />
                 <span class="form-check-label">{{

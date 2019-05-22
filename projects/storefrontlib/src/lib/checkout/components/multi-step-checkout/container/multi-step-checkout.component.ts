@@ -10,7 +10,7 @@ import { GlobalMessageService, CartService, UICart } from '@spartacus/core';
 
 import { Observable } from 'rxjs';
 
-import { CheckoutNavBarItem } from './checkout-navigation-bar';
+import { CheckoutNavBarItem, CheckoutSteps} from './checkout-navigation-bar';
 import { CheckoutDetailsService } from '../../../checkout-details.service';
 
 @Component({
@@ -22,6 +22,7 @@ export class MultiStepCheckoutComponent implements OnInit, OnDestroy {
   step = 1;
   cart$: Observable<UICart>;
   navs: CheckoutNavBarItem[] = this.initializeCheckoutNavBar();
+  steps: CheckoutSteps[] = this.initializeCheckoutSteps();
 
   constructor(
     public checkoutDetailsService: CheckoutDetailsService,
@@ -50,6 +51,16 @@ export class MultiStepCheckoutComponent implements OnInit, OnDestroy {
       nav.progressBar = nav.status.active || nav.status.completed;
     });
     this.step = step;
+  }
+
+  initializeCheckoutSteps(): CheckoutSteps[] {
+    return [
+      {link: 'shippingaddress'},
+      {link: 'shippingmethod'},
+      {link: 'payment'},
+      {link: 'review'},
+    ]
+
   }
 
   initializeCheckoutNavBar(): CheckoutNavBarItem[] {

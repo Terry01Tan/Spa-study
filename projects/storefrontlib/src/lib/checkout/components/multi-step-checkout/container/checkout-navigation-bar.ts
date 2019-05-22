@@ -20,3 +20,7 @@ export interface CheckoutNavBarItem {
   };
   progressBar: boolean;
 }
+
+export interface CheckoutSteps {
+  link: string;
+}
